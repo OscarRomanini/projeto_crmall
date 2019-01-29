@@ -2,12 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: Oscar Romanini
- * Date: 26/01/2019
- * Time: 10:14
- */
+* Date: 27/01/2019
+* Time: 15:52
+*/
+
+include_once 'db_connect.php';
+
+
+//SELECT
+
+if (isset($_GET['id'])):
+    $id = mysqli_escape_string($connect, $_GET['id']);
+    $sql = "SELECT * FROM clientes WHERE id = '$id'";
+    $resultado = mysqli_query($connect, $sql);
+    $dados = mysqli_fetch_array($resultado);
+endif;
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,115 +114,111 @@
 
 </head>
 
-    <div class="row">
-        <div class="col s12 m6 push-m3">
+<div class="row">
+    <div class="col s12 m6 push-m3">
+        <!--Adicionar um novo cliente-->
+        <h3 class="light"> Editar Cliente</h3>
 
-            <!--Nome-->
+<form action="_CRUD/update.php" method="post">
 
-            <h3 class="light">Novo Cliente</h3>
-
-            <form action="_CRUD/create.php" method="post">
-
-                <!--Nome-->
-                <div class="input-field col s12">
-                    <input type="text" name="nome" id="nome" required>
-                    <label for="nome">Nome</label>
-                </div>
-
-                <!--Nascimento-->
-                <div class="input-field col s12">
-                    <input id="nascimento" type="text" class="form-control" placeholder="Ex.: dd/mm/aaaa" data-mask="00/00/0000" maxlength="10"
-                           autocomplete="off" id="nascimento" name="nascimento" required >
-                    <label for="nascimento">Nascimento</label>
-                </div>
-
-                <!--Sexo-->
-                <div class="with-gap">
-                    <label for="sexo">Sexo </label>
-                    <p>
-                        <label>
-                            <input name="sexo" type="radio" value="M" checked/>
-                            <span>Masculino</span>
-                        </label>
-                    </p>
-                    <p>
-                        <label>
-                            <input name="sexo" type="radio" value="F"/>
-                            <span>Feminino</span>
-                        </label>
-                    </p>
-
-                </div>
-
-<!----------------------------------------  CEP  -------------------------------------------------------------->
-
-
-                <div class="input-field col s12">
-
-                <input type="text" name="cep" id="cep" maxlength="8">
-                         <label for="cep">CEP </label>
-
-
-                </div>
-<!------------------------------------------------------------------------------------------------------->
-
-                <!--Endereço-->
-                <div class="input-field col s12">
-                    <input type="text" name="endereco" id="endereco" placeholder="..." >
-                    <label for="endereco">Endereco </label>
-                </div>
-
-                <!--Numero-->
-                <div class="input-field col s12">
-                    <input type="number" name="num" id="num">
-                    <label for="num">Número </label>
-                </div>
-
-                <!--Complemento-->
-                <div class="input-field col s12">
-                    <input type="text" name="complemento" id="complemento">
-                    <label for="complemento">Complemento</label>
-                </div>
-
-                <!--Bairro-->
-                <div class="input-field col s12">
-                    <input type="text" name="bairro" id="bairro" placeholder="..">
-                    <label for="bairro">Bairro </label>
-                </div>
-
-                <!--Estado-->
-                <div class="input-field col s12">
-                    <input type="text" name="estado" id="estado" placeholder="...">
-                    <label for="estado">Estado</label>
-                </div>
-
-                <!--Cidade-->
-                <div class="input-field col s12">
-                    <input type="text" name="cidade" id="cidade" placeholder="..." >
-                    <label for="cidade">Cidade</label>
-                </div>
-
-                <button type="submit" name="btn-cadastrar" class="btn"> Cadastrar </button>
-                <a href="index.php" class="btn green">Listagem de clientes</a>
-
-                </form>
-
-        </div>
+    <!--Nome-->
+    <div class="input-field col s12">
+        <input type="text" name="nome" id="nome" value="<?php echo $dados['nome']; ?>" required>
+        <label for="nome">Nome</label>
     </div>
 
-<footer>
+    <!--Nascimento-->
+    <div class="input-field col s12">
+        <input type="text" class="form-control" placeholder="Ex.: dd/mm/aaaa" data-mask="00/00/0000" maxlength="10" autocomplete="off" id="nascimento" name="nascimento" value="<?php echo $dados['nascimento']; ?>" required>
+        <label for="nascimento">Nascimento</label>
+    </div>
 
+    <!--Sexo-->
+    <div class="with-gap">
+        <label for="sexo">Sexo </label>
+        <p>
+            <label>
+                <input name="sexo" type="radio" value="M" value="<?php echo $dados['sexo']; ?>" checked/>
+                <span>Masculino</span>
+            </label>
+        </p>
+        <p>
+            <label>
+                <input name="sexo" type="radio" value="F" value="<?php echo $dados['sexo']; ?>"/>
+                <span>Feminino</span>
+            </label>
+        </p>
+
+    </div>
+
+    <!----------------------------------------  CEP  -------------------------------------------------------------->
+
+
+    <div class="input-field col s12">
+
+        <input type="text" name="cep" id="cep" maxlength="8" value="<?php echo $dados['cep']; ?>">
+        <label for="cep">CEP </label>
+
+
+    </div>
+    <!------------------------------------------------------------------------------------------------------->
+
+    <!--Endereço-->
+    <div class="input-field col s12">
+        <input type="text" name="endereco" id="endereco" placeholder="..." value="<?php echo $dados['endereco']; ?>" >
+        <label for="endereco">Endereco </label>
+    </div>
+
+    <!--Numero-->
+    <div class="input-field col s12">
+        <input type="number" name="num" id="num" value="<?php echo $dados['num']; ?>">
+        <label for="num">Número </label>
+    </div>
+
+    <!--Complemento-->
+    <div class="input-field col s12">
+        <input type="text" name="complemento" id="complemento" value="<?php echo $dados['complemento']; ?>">
+        <label for="complemento">Complemento</label>
+    </div>
+
+    <!--Bairro-->
+    <div class="input-field col s12">
+        <input type="text" name="bairro" id="bairro" value="<?php echo $dados['bairro']; ?>" placeholder="..">
+        <label for="bairro">Bairro </label>
+    </div>
+
+    <!--Estado-->
+    <div class="input-field col s12">
+        <input type="text" name="estado" id="estado" value="<?php echo $dados['estado']; ?>" placeholder="...">
+        <label for="estado">Estado</label>
+    </div>
+
+    <!--Cidade-->
+    <div class="input-field col s12">
+        <input type="text" name="cidade" id="cidade" placeholder="..." value="<?php echo $dados['cidade']; ?>" >
+        <label for="cidade">Cidade</label>
+    </div>
+
+    <button type="submit" name="btn-editar" class="btn"> Editar </button>
+    <a href="index.php" class="btn green">Listagem de clientes</a>
+
+</form>
+
+    </div>
+</div>
+
+<footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>M.AutoInit();</script>
-
-    <!-- primeiro jquery, depois locastyle, depois o JS do Bootstrap. -->
+    <!-- Atente-se para a ordem: primeiro jquery, depois locastyle, depois o JS do Bootstrap. -->
     <script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="//assets.locaweb.com.br/locastyle/2.0.6/javascripts/locastyle.js"></script>
     <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+
 </footer>
 
 </body>
-
 </html>
 
 

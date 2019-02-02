@@ -8,7 +8,7 @@
 
 
 session_start();
-require_once '../db_connect.php';
+require_once '../Model/db_connect.php';
 
 //CLEAR (TRATA ATAQUES)
 
@@ -21,7 +21,7 @@ function clear($input){
 
 if(isset($_POST['btn-editar'])):
     $nome = clear($_POST['nome']);
-    $nasc = clear($_POST['nascimento']);
+    $nasc = clear($_POST['nasc']);
     $sexo = clear($_POST['sexo']);
     $cep = clear($_POST['cep']);
     $endereco = clear($_POST['endereco']);
@@ -37,10 +37,10 @@ if(isset($_POST['btn-editar'])):
 
     if(mysqli_query($connect, $sql)):
         $_SESSION['mensagem'] = "Atualizado com sucesso!";
-        header('Location: ../index.php');
+        header('Location: ../View/index.php');
     else:
         $_SESSION['mensagem'] = "Erro ao atualizar!";
-        header('Location: .../index.php');
+        header('Location: .../View/index.php');
     endif;
 endif;
 

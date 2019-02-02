@@ -9,7 +9,7 @@
 
 
 //Conexão
-require_once 'db_connect.php';
+require_once '../Model/db_connect.php';
 
 //Iniciar sessão
 
@@ -36,13 +36,14 @@ if (isset($_POST['entrar'])):
 
         if (mysqli_num_rows($resultado) == 1):
             $dados = mysqli_fetch_array($resultado);
-        $_SESSION['logado'] = true;
-        $_SESSION['id_usuario'] = $dados['id'];
-        header('Location: index.php');
+             $_SESSION['logado'] = true;
+             $_SESSION['id_usuario'] = $dados['id'];
+             header('Location: index.php');
         else:
             $erros[] = "<li>Usuário e senha não conferem!</li>";
         endif;
 
+        //Se o usuário não for encontrado no Banco...
         else:
             $erros[] = "<li>usuário inexistente</li>";
 
@@ -81,8 +82,8 @@ endif;
     <div id="bloco" name="bloco" class="login-page">
 
     <form action="<?php echo $_SERVER['PHP_SELF'];  ?>" method="post" class="form">
-        <label rel="login">Login </label><input type="text" name="login"><br>
-        <label rel="senha">Senha </label><input type="password" name="senha"><br>
+        <label rel="login">Login </label><input type="text" name="login" autocomplete="disable"><br>
+        <label rel="senha">Senha </label><input type="password" name="senha" autocomplete="disable"><br>
         <button type="submit" name="entrar">ENTRAR</button>
     </form>
 

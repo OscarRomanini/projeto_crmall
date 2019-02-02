@@ -6,7 +6,7 @@
 * Time: 15:52
 */
 
-include_once 'db_connect.php';
+include_once '../Model/db_connect.php';
 
 
 //SELECT
@@ -116,10 +116,10 @@ endif;
 
 <div class="row">
     <div class="col s12 m6 push-m3">
-        <!--Adicionar um novo cliente-->
+        <!--Editando o cliente-->
         <h3 class="light"> Editar Cliente</h3>
 
-<form action="_CRUD/update.php" method="post">
+<form action="../Control/update.php" method="post">
 
     <!--Nome-->
     <div class="input-field col s12">
@@ -129,8 +129,8 @@ endif;
 
     <!--Nascimento-->
     <div class="input-field col s12">
-        <input type="text" class="form-control" placeholder="Ex.: dd/mm/aaaa" data-mask="00/00/0000" maxlength="10" autocomplete="off" id="nascimento" name="nascimento" value="<?php echo $dados['nascimento']; ?>" required>
-        <label for="nascimento">Nascimento</label>
+        <input type="text" class="form-control" placeholder="Ex.: dd/mm/aaaa" data-mask="00/00/0000" maxlength="10" autocomplete="off" id="nasc" name="nasc" value="<?php echo $dados['nasc']; ?>" required>
+        <label for="nasc">Nascimento</label>
     </div>
 
     <!--Sexo-->

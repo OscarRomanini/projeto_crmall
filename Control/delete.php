@@ -7,7 +7,7 @@
  */
 
 session_start();
-require_once '../db_connect.php';
+require_once '../Model/db_connect.php';
 
 if (isset($_POST['btn-deletar'])):
     $id = mysqli_escape_string($connect, $_POST['id']);
@@ -16,9 +16,9 @@ if (isset($_POST['btn-deletar'])):
 
     if (mysqli_query($connect, $sql)):
         $_SESSION['mensagem'] = "Excluído com sucesso!";
-        header('Location: ../index.php');
+        header('Location: ../View/index.php');
     else:
          $_SESSION['mensagem'] = "Erro ao excluir!";
-         header('Location: .../index.php');
+         header('Location: .../View/index.php');
     endif;
 endif;

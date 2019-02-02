@@ -52,7 +52,16 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+li{
+    color: black;
+    padding: 10px;
+    margin-left: 380px;
+    margin-right: 380px;
+    text-align: center;
 
+    background-color: white;
+    border-radius: 10px;
+}
 
 /* Box-Sizing */
 box-sizing {

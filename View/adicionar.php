@@ -110,7 +110,7 @@
 
             <h3 class="light">Novo Cliente</h3>
 
-            <form action="_CRUD/create.php" method="post">
+            <form action="../Control/create.php" method="post">
 
                 <!--Nome-->
                 <div class="input-field col s12">
@@ -120,9 +120,9 @@
 
                 <!--Nascimento-->
                 <div class="input-field col s12">
-                    <input id="nascimento" type="text" class="form-control" placeholder="Ex.: dd/mm/aaaa" data-mask="00/00/0000" maxlength="10"
-                           autocomplete="off" id="nascimento" name="nascimento" required >
-                    <label for="nascimento">Nascimento</label>
+                    <input id="nasc" type="text" class="form-control" placeholder="Ex.: dd/mm/aaaa" data-mask="00/00/0000" maxlength="10"
+                           autocomplete="off" name="nasc" required >
+                    <label for="nasc">Nascimento</label>
                 </div>
 
                 <!--Sexo-->

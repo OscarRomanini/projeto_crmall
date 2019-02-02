@@ -8,11 +8,11 @@
 
 //conexão
 
-include_once 'db_connect.php';
+include_once '../Model/db_connect.php';
 
 //Mensagem
 
-include_once 'mensagem.php';
+include_once '../Control/mensagem.php';
 
 ?>
 
@@ -72,10 +72,12 @@ include_once 'mensagem.php';
             <td><?php echo $dados['bairro']; ?></td>
             <td><?php echo $dados['estado']; ?></td>
             <td><?php echo $dados['cidade']; ?></td>
+
+            <!--Botões editar e excluir-->
             <td><a href="editar.php?id=<?php echo $dados['id']; ?>" class="btn-floating orange"><i class="material-icons">edit</i> </a></td>
             <td><a href="#modal<?php echo $dados['id']; ?>" class="btn-floating red modal-trigger"><i class="material-icons">delete</i> </a></td>
 
-            <!---Estrutura do modal -->
+            <!---modal que confirma a exclusão-->
 
             <div id="modal<?php echo $dados['id']; ?>" class="modal">
                 <div class="modal-content">
@@ -84,7 +86,7 @@ include_once 'mensagem.php';
                 </div>
                 <div class="modal-footer">
 
-                    <form action="_CRUD/delete.php" method="post">
+                    <form action="../Control/delete.php" method="post">
                         <input type="hidden" name="id" value="<?php echo $dados['id']?>">
                         <button type="submit" name="btn-deletar" class="btn red">Sim, quero deletar</button>
                         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
@@ -119,6 +121,8 @@ include_once 'mensagem.php';
         </tbody>
         </table>
         <br>
+
+        <!--Botão adicionar-->
         <a href="adicionar.php" class="btn">Adicionar cliente</a>
 
     </div>
